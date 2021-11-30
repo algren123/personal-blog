@@ -1,26 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import axios from 'axios';
-import { europeanDate } from '../utils/utilFunctions';
-
-const Post = (props) => {
-  const { id, fields } = props;
-  return (
-    <Link href={id}>
-      <div
-        className="
-      p-5 m-5
-      bg-gray-900 text-white hover:bg-white hover:text-gray-900 font-bold
-      cursor-pointer
-      grid grid-cols-2 justify-between items-center
-      "
-      >
-        <p>{fields.title}</p>
-        <p className="ml-auto">{europeanDate(fields.date)}</p>
-      </div>
-    </Link>
-  );
-};
+import { Post } from './Post';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
@@ -38,7 +18,7 @@ function Feed() {
   return (
     <div className="mx-10 lg:mx-96">
       {posts.map((post) => (
-        <Post key={post.id} id={post.id} fields={post.fields} />
+        <Post key={post.id} id={post.id} fields={post.fields} admin={false} />
       ))}
     </div>
   );

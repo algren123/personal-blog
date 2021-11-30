@@ -1,7 +1,7 @@
 import { table, minifyPosts } from './utils/Airtable';
 
 export default async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, image } = req.body;
 
   try {
     let date = new Date();
@@ -15,6 +15,7 @@ export default async (req, res) => {
           title,
           date: month + '/' + day + '/' + year,
           content,
+          image,
         },
       },
     ]);
