@@ -13,7 +13,8 @@ function Admin({ posts }) {
     return (
       <Link href="/">
         <p>
-          You don't have permission to view this page. Click here to go back.
+          You don&apos;t have permission to view this page. Click here to go
+          back.
         </p>
       </Link>
     );

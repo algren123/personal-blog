@@ -9,7 +9,9 @@ function Navbar() {
     <nav className="flex items-center justify-between flex-wrap p-6 bg-gray-900 text-center">
       <div className="flex items-center flex-shrink-0 text-white lg:ml-32">
         <Link href="/">
-          <a className="font-semibold text-xl tracking-tight">Algren's Blog</a>
+          <a className="font-semibold text-xl tracking-tight">
+            Algren&apos;s Blog
+          </a>
         </Link>
       </div>
       <div className="block lg:hidden" onClick={() => setClick(!click)}>
