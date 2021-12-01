@@ -23,12 +23,12 @@ export const Post = (props) => {
   }
 
   return (
-    <>
+    <div className="lg:mx-32">
       <Link href={id}>
         <div
           className="
-        p-5 mx-5
-        bg-gray-900 text-white hover:bg-white hover:text-gray-900 font-bold
+        p-5
+        bg-gray-900 text-white hover:bg-white hover:text-gray-900 font-bold lg:text-2xl
         cursor-pointer
         grid grid-cols-2 justify-between items-center
         "
@@ -39,7 +39,7 @@ export const Post = (props) => {
       </Link>
       {admin ? (
         <div
-          className="mx-5 mb-5
+          className="mb-5
         cursor-pointer
         grid grid-cols-2 justify-between items-center"
         >
@@ -58,6 +58,6 @@ export const Post = (props) => {
       ) : (
         ''
       )}
-    </>
+    </div>
   );
 };

@@ -22,7 +22,7 @@ function Admin({ posts }) {
   return (
     <div className="bg-gray-800 min-h-screen h-full">
       <Navbar />
-      <div className="text-center">
+      <div className="text-center lg:mx-96">
         <h1 className="text-gray-200 font-bold text-4xl my-6">Admin</h1>
         <Link href="/admin/addpost">
           <button className="text-base text-gray-200 border-gray-200 border-2 py-2 px-3 m-5">

@@ -1,12 +1,48 @@
 import Navbar from '../../components/Navbar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { link } from '../../utils/utilFunctions';
+import { EditorState, RichUtils } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertToHTML } from 'draft-convert';
+import DOMPurify from 'dompurify';
+import 'draft-js/dist/Draft.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 function AddPost() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
+
+  // Draft.JS implementation [START]
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
+  const handleEditorChange = (state) => {
+    setEditorState(state);
+    convertContentToHTML();
+  };
+
+  const convertContentToHTML = () => {
+    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
+    setContent(currentContentAsHTML);
+  };
+
+  const createMarkup = (html) => {
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
+  };
+
+  function handleReturn(e) {
+    console.log(e.shiftKey);
+    if (e.shiftKey) {
+      setEditorState(RichUtils.insertSoftNewline(editorState));
+      return 'handled';
+    }
+    return 'not-handled';
+  }
+  // Draft.JS implementation [END]
 
   function handleAddPost() {
     axios
@@ -24,9 +60,9 @@ function AddPost() {
   return (
     <div className="min-h-screen h-full bg-gray-800">
       <Navbar />
-      <div className="text-center font-bold">
+      <div className="text-center font-bold lg:mx-auto lg:w-1/2 p-5">
         <h1 className="text-2xl text-white my-5">Add Post</h1>
-        <div className="text-white flex flex-col m-5 p-5 bg-gray-900">
+        <div className="text-white flex flex-col p-5 bg-gray-900">
           <div className="my-2">
             <h2>Title</h2>
             <input
@@ -37,15 +73,20 @@ function AddPost() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
+          <div
+            className="preview mt-4 break-all"
+            dangerouslySetInnerHTML={createMarkup(content)}
+          ></div>
           <div className="my-2">
             <h2>Content</h2>
-            <textarea
-              type="text"
-              name="title"
-              id="title"
-              className="bg-gray-800 p-3 my-2"
-              cols="24"
-              onChange={(e) => setContent(e.target.value)}
+            <Editor
+              placeholder="Write something!"
+              editorState={editorState}
+              onEditorStateChange={handleEditorChange}
+              handleReturn={handleReturn}
+              wrapperClassName="p-5"
+              editorClassName="bg-gray-800 my-4 px-4"
+              toolbarClassName="toolbar-class text-black font-normal"
             />
           </div>
           <div className="my-3">

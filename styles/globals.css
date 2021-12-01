@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-4xl;
+    @apply text-center;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  p {
+    @apply text-2xl;
+  }
+}
+
+p {
+  white-space: pre-wrap;
+}
+
 html,
 body {
   padding: 0;

@@ -19,7 +19,12 @@ function PostView({ posts }) {
         </h1>
         <h2 className="text-normal my-1">By Algren Pauna</h2>
         <h2 className="text-normal">{europeanDate(post.date)}</h2>
-        <p className="text-gray-200 m-3 mt-10">{post.content}</p>
+        <div
+          className="text-gray-200 m-3 mt-10 mx-6 lg:mx-96 lg:text-2xl text-left"
+          dangerouslySetInnerHTML={{
+            __html: post.content,
+          }}
+        ></div>
       </div>
       <Footer />
     </div>

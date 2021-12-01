@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="A personal blog where I talk coding, cooking and whatever interests me at the time"
         />
+        <meta charset="utf-8" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link

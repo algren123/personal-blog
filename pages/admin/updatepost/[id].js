@@ -33,7 +33,7 @@ function UpdatePost({ posts }) {
   return (
     <div className="min-h-screen h-full bg-gray-800">
       <Navbar />
-      <div className="text-center font-bold">
+      <div className="text-center font-bold lg:mx-auto lg:w-96">
         <h1 className="text-2xl text-white my-5">Update Post</h1>
         <div className="text-white flex flex-col m-5 p-5 bg-gray-900">
           <div className="my-2">

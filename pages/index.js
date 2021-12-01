@@ -13,7 +13,7 @@ export default function Home() {
     "
     >
       <Navbar />
-      <div className="lg:mx-6">
+      <div className="lg:mx-48">
         <h1 className="text-4xl font-bold text-white text-center my-10">
           Algren's blog
         </h1>
