@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
   const link =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/api/getPosts'
-      : '';
+      : 'https://algrens-blog.vercel.app/api/getPosts';
   const posts = await axios.get(link).then((res) => res.data);
   if (!posts) {
     return {

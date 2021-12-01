@@ -5,5 +5,5 @@ export const europeanDate = (date) => {
 export const link = () => {
   return process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000/api/'
-    : '';
+    : 'https://algrens-blog.vercel.app/api/';
 };
