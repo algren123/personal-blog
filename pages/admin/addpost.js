@@ -3,7 +3,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { link } from '../../utils/utilFunctions';
 import { EditorState, RichUtils } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
+import dynamic from 'next/dynamic';
+const Editor = dynamic(
+  () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
+  { ssr: false }
+);
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
 import 'draft-js/dist/Draft.css';
@@ -18,6 +22,7 @@ function AddPost() {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
+
   const handleEditorChange = (state) => {
     setEditorState(state);
     convertContentToHTML();
@@ -73,10 +78,6 @@ function AddPost() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div
-            className="preview mt-4 break-all"
-            dangerouslySetInnerHTML={createMarkup(content)}
-          ></div>
           <div className="my-2">
             <h2>Content</h2>
             <Editor
